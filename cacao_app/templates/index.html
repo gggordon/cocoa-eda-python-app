@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+   <head></head>
+   <body>
+   	<h2>Predict Cocoa Percent</h2>
+
+   	<form id="frmData">
+   		<div class="form-group">
+   			<label>Company:</label>
+   			<input type="text" class="form-control" name="company">
+   		</div>
+   		<div class="form-group">
+   			<label>Location:</label>
+   			<input type="text" class="form-control" name="location">
+   		</div>
+   		<div class="form-group">
+   			<label>Orange:</label>
+   			<input type="text" class="form-control" name="origin">
+   		</div>
+   		<button id="btnFind">Find Percentage</button>
+   	</form>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$('#btnFind').click(function(ev){
+    		var data = $('#frmData').serialize();
+    		$.ajax({
+    			url:'http://localhost:5000/predict-cocoa-percent?'+data,
+    			success:function(response){
+    				alert('success')
+    				alert(response)
+    				console.log(response)
+    			},
+    			error:function (err) {
+    				console.log('we had an error')
+    				console.error(err)
+    			}
+    		})
+    		ev.preventDefault();
+    		return false;
+
+    	})
+    </script>
+   </body>
+</html>
